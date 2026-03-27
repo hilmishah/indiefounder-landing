@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndieFounder AI — Your AI Team for Building & Launching SaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --pink: #ec4899;
+            --cyan: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--accent-light);
+            margin-bottom: 24px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--text-muted);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .section-desc {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin-bottom: 48px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warning) 0%, #ef4444 100%);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 0;
+        }
+
+        .solution-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--cyan) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+
+        .agent-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 20px;
+        }
+
+        .agent-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .agent-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+
+        .agent-example {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--success);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--bg-card);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 64px;
+            bottom: 64px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--pink) 100%);
+            opacity: 0.3;
+        }
+
+        @media (min-width: 768px) {
+            .steps::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .step {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .step {
+                flex-direction: row;
+            }
+            
+            .step:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            min-width: 64px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            flex: 1;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .step-visual {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Comparison */
+        .comparison {
+            padding: 100px 0;
+        }
+
+        .comparison-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-dark);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .comparison-table td {
+            font-size: 0.9375rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check {
+            color: var(--success);
+            font-size: 1.25rem;
+        }
+
+        .cross {
+            color: #ef4444;
+            font-size: 1.25rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-card .desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9375rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .pricing-cta {
+            display: block;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .pricing-card.popular .pricing-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+            color: white;
+        }
+
+        .pricing-card:not(.popular) .pricing-cta {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .problem, .solution, .how-it-works, .comparison, .pricing, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <span>🤖</span> IndieFounder<span>AI</span>
+            </div>
+            <a href="#pricing" class="nav-cta">Get Early Access</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">
+                Launching Soon — Join the Waitlist
+            </div>
+            <h1>
+                Your AI Team for<br>
+                <span class="highlight">Building & Launching SaaS</span>
+            </h1>
+            <p>
+                Stop doing everything yourself. Get 4 specialized AI agents that research competitors, 
+                write copy, critique your work, and build strategy — all in one dashboard.
+            </p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-primary">Start Free Trial</a>
+                <a href="#how-it-works" class="btn-secondary">See How It Works →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-label">The Problem</div>
+            <h2 class="section-title">Building SaaS Alone Sucks</h2>
+            <p class="section-desc">
+                You're a solo founder wearing every hat — researcher, marketer, copywriter, strategist. 
+                But you can't be great at all of them.
+            </p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😩</div>
+                    <h3>Research Paralysis</h3>
+                    <p>You spend weeks researching competitors instead of building. 
+                    By the time you launch, the market has changed.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">✍️</div>
+                    <h3>Copywriter's Block</h3>
+                    <p>Landing page blank. Launch post impossible. You know what you built, 
+                    but describing it feels like pulling teeth.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>No Second Opinion</h3>
+                    <p>No co-founder to bounce ideas off. No team to review your work. 
+                    Everything is just... you.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>Expensive Agencies</h3>
+                    <p>$5K for a launch strategy. $3K for copy. You're bootstrapped — 
+                    you can't afford to外包 everything.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-header">
+                <div class="section-label">The Solution</div>
+                <h2 class="section-title">4 AI Agents. Infinite Output.</h2>
+                <p class="section-desc">
+                    Instead of hiring a team or bouncing between tools, get specialized AI agents 
+                    that work together — in parallel.
+                </p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="agent-card">
+                    <div class="agent-icon">🔍</div>
+                    <h3>Research Agent</h3>
+                    <p>Instant competitor analysis, market sizing, trend spotting</p>
+                    <div class="agent-example">
+                        "Find 10 competitors to my AI tool for Amazon sellers. Show pricing, weaknesses, market gaps."
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-icon">✍️</div>
+                    <h3>Copy Agent</h3>
+                    <p>Landing page copy, launch posts, emails, social content</p>
+                    <div class="agent-example">
+                        "Write my Product Hunt launch post. Focus on time saved, not features."
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-icon">🎯</div>
+                    <h3>Critique Agent</h3>
+                    <p>Honest feedback on landing pages, pricing, positioning</p>
+                    <div class="agent-example">
+                        "Review my landing page. What's confusing? What should I remove?"
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-icon">📊</div>
+                    <h3>Strategy Agent</h3>
+                    <p>Go-to-market planning, pricing strategy, launch timing</p>
+                    <div class="agent-example">
+                        "I'm launching in 2 weeks. What's my launch sequence?"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="solution-header">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">From Idea to Launch in Minutes</h2>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose Your Agent</h3>
+                        <p>Select one or more AI agents based on what you need right now. 
+                        All agents work simultaneously — no waiting in line.</p>
+                        <div class="step-visual">
+                            ┌─────────────────────────────┐<br>
+                            │  🔍 Research    ✓ Selected  │<br>
+                            │  ✍️ Copy        ✓ Selected  │<br>
+                            │  🎯 Critique    ○          │<br>
+                            │  📊 Strategy    ○          │<br>
+                            └─────────────────────────────┘
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Describe Your Task</h3>
+                        <p>Tell the agent what you need in plain English. 
+                        The more context, the better the output.</p>
+                        <div class="step-visual">
+                            > "I want to build an AI tool that helps 
+                            > freelancers track their time. Competitors 
+                            > charge $15-20/mo. I want to launch on PH."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Instant Results</h3>
+                        <p>Agents call Gradient AI (powered by Claude, GPT-5, Llama, DeepSeek) 
+                        and return structured, actionable output.</p>
+                        <div class="step-visual">
+                            ┌─────────────────────────────┐<br>
+                            │  📊 10 Competitors Found   │<br>
+                            │  💰 Avg Price: $17/mo       │<br>
+                            │  💡 Gap: Weekly billing     │<br>
+                            │  🎯 Weakness: Complex UI   │<br>
+                            └─────────────────────────────┘
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Edit & Publish</h3>
+                        <p>Copy the output, edit what you like, and publish. 
+                        No more blank page syndrome.</p>
+                        <div class="step-visual">
+                            ✓ Launch post drafted<br>
+                            ✓ Twitter thread ready<br>
+                            ✓ Email sequence complete<br>
+                            → Edit & Publish
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <div class="solution-header">
+                <div class="section-label">vs The Alternatives</div>
+                <h2 class="section-title">Why IndieFounder AI?</h2>
+            </div>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>IndieFounder AI</th>
+                            <th>Buildpad</th>
+                            <th>ChatGPT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Specialized agents for indie hackers</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Parallel agent execution</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Built for Product Hunt launches</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>One-click copy for PH, Twitter, Email</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Launch-focused knowledge base</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing</td>
+                            <td>$15/mo</td>
+                            <td>$29/mo</td>
+                            <td>$20/mo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="solution-header">
+                <div class="section-label">Pricing</div>
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-desc">
+                    Start free. Upgrade when you're making money.
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$0 <span>/ month</span></div>
+                    <p class="desc">For founders just exploring</p>
+                    <ul class="pricing-features">
+                        <li>5 agent queries per month</li>
+                        <li>Access to all 4 agents</li>
+                        <li>Basic templates</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Get Started Free</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <h3>Pro</h3>
+                    <div class="price">$29 <span>/ month</span></div>
+                    <p class="desc">For serious indie hackers</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited agent queries</li>
+                        <li>Priority processing</li>
+                        <li>Advanced templates</li>
+                        <li>Export to Notion, Markdown</li>
+                        <li>Slack support</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Scale</h3>
+                    <div class="price">$99 <span>/ month</span></div>
+                    <p class="desc">For founders with momentum</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>5 team members</li>
+                        <li>Custom agent training</li>
+                        <li>Dedicated Slack channel</li>
+                        <li>Onboarding call</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Stop Building Alone.<br>Start Building Smart.</h2>
+            <p>Join 500+ indie hackers on the waitlist.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn-primary">Join the Waitlist</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                🤖 IndieFounder AI — Built with 
+                <a href="https://www.digitalocean.com/products/gradient" target="_blank">DigitalOcean Gradient AI</a>
+            </p>
+            <p style="margin-top: 8px;">
+                © 2026 IndieFounder AI. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.problem-card, .agent-card, .step').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
